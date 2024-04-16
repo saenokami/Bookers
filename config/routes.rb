@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  # 他のルート設定...
-
-  # トップ画面をルートパスに指定
   root 'homes#top'
-  post 'books' => 'books#create'
+  get '/top', to: 'homes#top'
 
-  resources :books
+  resources :books, only: [:new, :create]  # :new と :create アクションのみを含む books リソースを定義する
 end
