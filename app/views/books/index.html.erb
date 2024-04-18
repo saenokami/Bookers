@@ -1,4 +1,6 @@
 <h1>Books</h1>
+
+<!-- 投稿一覧表示 -->
 <table>
   <thead>
     <tr>
@@ -15,8 +17,22 @@
         <td><%= book.body %></td>
         <td><a class="show_<%= book.id %>" href="/books/<%= book.id %>">Show</a></td>
         <td><a class="edit_<%= book.id %>" href="/books/<%= book.id %>/edit">Edit</a></td>
-      <td><%=link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?"%></td>
+        <td><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "Are you sure?" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<!-- 新規投稿フォーム -->
+<h3>New book</h3>
+<%= form_with(model: @book, local: true) do |f| %>
+  <div class="form-input">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="form-input">
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
+  </div>
+  <div><%= f.submit 'Create Book' %></div>
+<% end %>
