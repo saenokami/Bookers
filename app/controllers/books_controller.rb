@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
+    render :index if @book.errors.any?
   end
   
   def show
@@ -18,7 +19,8 @@ class BooksController < ApplicationController
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
     else
-      render :new
+      @books = Book.all
+      render :index
     end
   end
   

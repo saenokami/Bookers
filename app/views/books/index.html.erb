@@ -25,6 +25,16 @@
 
 <!-- 新規投稿フォーム -->
 <h3>New book</h3>
+
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors prohibited this book from being saved
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with(model: @book, local: true) do |f| %>
   <div class="form-input">
     <%= f.label :title %><br>
